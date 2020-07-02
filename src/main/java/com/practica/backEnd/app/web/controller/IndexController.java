@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.practica.backEnd.app.web.model.entity.UsuarioDato;
 import com.practica.backEnd.app.web.model.entity.UsuarioHasRol;
 import com.practica.backEnd.app.web.model.entity.UsuarioLogin;
-import com.practica.backEnd.app.web.model.services.IUsuarioDatoService;
 import com.practica.backEnd.app.web.model.services.IUsuarioHasRolService;
 import com.practica.backEnd.app.web.model.services.IUsuarioLoginService;
 
@@ -30,10 +28,7 @@ public class IndexController {
 
 	@Autowired
 	private IUsuarioLoginService usuarioLoginDAO;
-	@Autowired
-	private IUsuarioDatoService usuarioDatoDAO;
 	private UsuarioLogin usuarioLoginDTO = new UsuarioLogin();
-	private UsuarioDato usuarioDatoDTO = new UsuarioDato();
 	private UsuarioHasRol rol = new UsuarioHasRol();
 	@Autowired
 	private IUsuarioHasRolService rolDao;

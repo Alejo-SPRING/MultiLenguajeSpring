@@ -24,10 +24,11 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a th:href="@{/cliente/verFac}"
 						class="nav-link">Ver facturas</a></li>
-					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/cliente/productos}"
-						class="nav-link">Registrar facturas</a></li>
-					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/cliente/crearProducto}"
-						class="nav-link">Producto</a></li>
+					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a
+						th:href="@{/cliente/productos}" class="nav-link">Registrar
+							facturas</a></li>
+					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a
+						th:href="@{/cliente/crearProducto}" class="nav-link">Producto</a></li>
 				</ul>
 				<ul class="navbar-nav navbar-right">
 					<li class="nav-item"><a class="nav-link">
@@ -36,7 +37,8 @@
 									sec:authentication="principal.authorities"></small>
 							</div>
 					</a></li>
-					<li class="nav-item"><form th:action="@{/logout}" method="post">
+					<li class="nav-item"><form th:action="@{/logout}"
+							method="post">
 							<button type="submit" class="btn btn-outline-primary">Salir</button>
 						</form></li>
 				</ul>
@@ -58,9 +60,17 @@
 			<div class="collapse navbar-collapse" id="menu">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a th:href="@{/springLogin2}"
-						class="nav-link">Inicio</a></li>
+						class="nav-link" th:text="#{text.cliente.inicio}"></a></li>
 					<li class="nav-item"><a th:href="@{/registrar}"
-						class="nav-link">Registrar</a></li>
+						class="nav-link" th:text="#{text.cliente.registrar}"></a></li>
+				</ul>
+				<ul class="navbar-nav navabr-right mx-4">
+					<li class="nav-item"><a class="btn btn-outline-success"
+						href="?lang=es_ES">ES</a></li>
+					<li class="nav-item"><a class="btn btn-outline-success"
+						href="?lang=en_EN">US</a></li>
+					<li class="nav-item"><a class="btn btn-outline-success"
+						href="?lang=de_DE">DE</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -76,9 +86,7 @@
 					<p class="text-center text-light">AppSpringFramework
 						desarollada por: Anderson Rojas</p>
 					<p class="text-center text-light">&copyRight; Not copy right</p>
-					<p class="text-center text-light">Aplicaión desarrollada para
-						la parctica y auto evaluación de lo aprendido con SpringMVC,
-						SpringBoot, Thymeleaf</p>
+					<p class="text-center text-light" th:text="#{text.cliente.footer}"></p>
 				</div>
 			</div>
 		</div>
