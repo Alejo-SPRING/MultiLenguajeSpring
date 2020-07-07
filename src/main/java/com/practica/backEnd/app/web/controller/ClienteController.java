@@ -205,7 +205,7 @@ public class ClienteController {
 		return "cliente/form";
 	}
 
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
+	@Secured("ROLE_USER")
 	@GetMapping("/verFac")
 	public String verFacturas(Model model, Authentication auth, HttpServletRequest request) {
 		if(this.hasRole("ROLE_USER")) {
@@ -241,16 +241,16 @@ public class ClienteController {
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/inicio")
 	public String init(RedirectAttributes redirect, Model model, Authentication authentication) {
-		usuarioDato = usuarioDatoDAO.findForId(5);
+		usuarioDato = usuarioDatoDAO.findForId(Integer.parseInt(authentication.getName()));
 		if (usuarioDato != null) {
 			model.addAttribute("usuario", usuarioDato);
 			if(authentication != null) {
-				model.addAttribute("mensaje", "Bienvenido " + authentication.getName());
+				model.addAttribute("mensaje", "Bienvenido " + usuarioDato.getUsuarioNombre());
 			}
 			return "redirect:/cliente/verFac";
 		} else {
 			redirect.addFlashAttribute("mensaje", "error('Por favor intenta ingresar de nuevo!');");
-			return "redirect:/SpringApp/springLogin2";
+			return "redirect:/springLogin2";
 		}
 	}
 

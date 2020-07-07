@@ -19,7 +19,6 @@ public class UploadFilesServiceImpl implements IUploadFilesService {
 		try {
 			Files.copy(file.getInputStream(), path);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return name;

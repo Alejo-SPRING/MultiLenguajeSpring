@@ -2,10 +2,12 @@ package com.practica.backEnd.app.web.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +36,8 @@ public class IndexController {
 	private IUsuarioHasRolService rolDao;
 	@Autowired
 	private BCryptPasswordEncoder encode;
+	@Autowired
+	private MessageSource messageSource;
 
 	@GetMapping("/restApi")
 	public @ResponseBody List<UsuarioLogin> findUsuarios() {
@@ -45,20 +49,32 @@ public class IndexController {
 		return "redirect:/cliente/inicio";
 	}
 
+	/**
+	 * Traduccion desde el back con mensaje de error de contraseña o correo
+	 * @param error
+	 * @param logout
+	 * @param lang
+	 * @param model
+	 * @param principal
+	 * @param redirect
+	 * @param locale
+	 * @return
+	 */
 	@GetMapping("/springLogin2")
 	public String springLogin(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(name = "logout", required = false) String logout, Model model, Principal principal,
-			RedirectAttributes redirect) {
+			@RequestParam(name = "logout", required = false) String logout, @RequestParam(name = "lang", required = false) String lang, Model model, Principal principal,
+			RedirectAttributes redirect, Locale locale) {
 		if (principal != null) {
 			redirect.addFlashAttribute("mensaje", "Ya iniciaste sesión!");
 			return "redirect:/cliente/inicio";
 		}
 		if (error != null) {
-			model.addAttribute("mensaje", "Error de usuario o contraseña!");
+			model.addAttribute("mensaje", messageSource.getMessage("text.error.session", null, locale));
 		}
 		if (logout != null) {
 			model.addAttribute("mensaje", "Sessión cerrada!");
 		}
+		model.addAttribute("lang", lang);
 		return "login";
 	}
 

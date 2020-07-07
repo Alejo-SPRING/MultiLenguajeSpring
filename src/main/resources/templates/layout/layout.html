@@ -10,10 +10,10 @@
 <body>
 	<header th:fragment="top-cliente">
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-			<a th:href="@{/SpringApp/filter}">
+			<a th:href="@{/}">
 				<h3 class="navbar-brand">
-					<img th:src="@{/img/descarga (1).png}" alt="imagen logo"
-						height="60" width="60" class="rounded-circle" />AppSpringFramework
+					<img th:src="@{/imgs/logo.png}" alt="imagen logo" height="60"
+						width="60" class="rounded-circle" />AppSpringFramework
 				</h3>
 			</a>
 			<button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -33,7 +33,7 @@
 				<ul class="navbar-nav navbar-right">
 					<li class="nav-item"><a class="nav-link">
 							<div sec:authorize="isAuthenticated()">
-								<small sec:authentication="name"></small> <small
+								<small th:text="${userName}"></small> <small
 									sec:authentication="principal.authorities"></small>
 							</div>
 					</a></li>
@@ -49,8 +49,8 @@
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 			<a th:href="@{/}">
 				<h3 class="navbar-brand">
-					<img th:src="@{/img/descarga (1).png}" alt="imagen logo"
-						height="60" width="60" class="rounded-circle" />AppSpringFramework
+					<img th:src="@{/imgs/logo.png}" alt="imagen logo" height="60"
+						width="60" class="rounded-circle" /> AppSpringFramework
 				</h3>
 			</a>
 			<button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -65,21 +65,24 @@
 						class="nav-link" th:text="#{text.cliente.registrar}"></a></li>
 				</ul>
 				<ul class="navbar-nav navabr-right mx-4">
-					<li class="nav-item"><a class="btn btn-outline-success"
-						href="?lang=es_ES">ES</a></li>
-					<li class="nav-item"><a class="btn btn-outline-success"
-						href="?lang=en_EN">US</a></li>
-					<li class="nav-item"><a class="btn btn-outline-success"
-						href="?lang=de_DE">DE</a></li>
+					<li class="nav-item dropdown show"><a
+						class="btn btn-outline-primary dropdown-toggle"
+						data-toggle="dropdown" href="#" id="dropdownLenguaje"
+						th:text="#{text.locale.lenguaje}"></a>
+						<div class="dropdown-menu bg-dark">
+							<a class="dropdown-item text-light" th:href="@{/locale?lang=es_ES}">ES</a> <a
+								class="dropdown-item text-light" th:href="@{/locale?lang=en_EN}">US</a> <a
+								class="dropdown-item text-light" th:href="@{/locale/?lang=de_DE}">DE</a>
+						</div></li>
 				</ul>
 			</div>
 		</nav>
 	</header>
 	<footer th:fragment="footer">
-		<div class="container-fluid bg-dark">
+		<div class="container-fluid bg-dark mt-5">
 			<div class="row">
 				<div class="col-3">
-					<img th:src="@{/img/descarga (1).png}" class="rounded-circle mt-3"
+					<img th:src="@{/imgs/logo.png}" class="rounded-circle mt-3"
 						width="90" height="90" />
 				</div>
 				<div class="col-8">
